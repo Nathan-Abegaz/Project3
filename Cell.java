@@ -32,8 +32,8 @@ public class Cell {
 	
 	/*
 	 * Delete cell from list of of walls and 
-	 * add it to the list of connections
-	 * 
+	 * add it to the list of edges/connections
+	 * @param newCell
 	 */
 	
 	public void dnc(Cell newCell)
