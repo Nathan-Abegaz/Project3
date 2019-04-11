@@ -4,15 +4,29 @@ import java.util.Stack;
 public class Maze {
 	
 	Cell[] cells;
+	public int r;
 	
-	public Maze()
+	public Maze(int r)
 	{
+		this.r = r;
 		createGrid();
 		breakWalls();
 	}
 
 	public void createGrid()
 	{
+		Cell[] cells = new Cell[r*r];
+		for(int i = 0; i<cells.length; i++) {
+			Cell newCell = new Cell(i);
+			
+			left(newCell);
+			right(newCell);
+			top(newCell);
+			bottom(newCell);
+			
+			cells[i] = newCell;
+			
+		}
 		
 	}
 	
@@ -48,7 +62,7 @@ public class Maze {
 	{
 		Random randomGenerator = new Random();
 		int index = randomGenerator.nextInt(cell.walls.size());
-		Cell randomCell = cell.walls.get(index);
+		Cell randomCell = cells[cell.walls.get(index)];
 		return randomCell;
 	}
 	
@@ -59,5 +73,25 @@ public class Maze {
 	{
 		cell1.dnc(cell2);
 		cell2.dnc(cell1);
+	}
+	
+	private void left(Cell i) {
+		if(i.index%r!=0)
+			i.add(i.index-1);
+	}
+	
+	private void right(Cell i) {
+		if(((i.index+1)%r)==0)
+			i.add(i.index+1);
+	}
+	
+	private void top(Cell i) {
+		if(i.index<r)
+			i.add(i.index-r);
+	}
+	
+	private void bottom(Cell i) {
+		if(i.index+r<r*r)
+			i.add(i.index-r);
 	}
 }

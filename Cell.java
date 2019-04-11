@@ -2,15 +2,21 @@ import java.util.ArrayList;
 
 public class Cell {
 	
-	ArrayList<Cell> walls;
-	ArrayList<Cell> edges;
+	ArrayList<Integer> walls;
+	ArrayList<Integer> edges;
+	public int index;
+	public int vis;
+	
+	public Cell(int index) {
+		this.index=index;
+	}
 	
 	/*
 	 * Adds cell to the list of cells with walls
 	 */
-	public void add(Cell cell)
+	public void add(int i)
 	{
-		walls.add(cell);
+		walls.add(i);
 	}
 	
 	
@@ -39,7 +45,7 @@ public class Cell {
 	public void dnc(Cell newCell)
 	{
 		walls.remove(walls.indexOf(newCell));
-		edges.add(newCell);
+		edges.add(newCell.index);
 	}
 
 }
