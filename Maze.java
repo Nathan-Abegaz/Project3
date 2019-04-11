@@ -40,7 +40,9 @@ public class Maze {
 		{
 			if(currentCell.checkWalls())
 			{
-				Cell randomCell = getRandomCell(currentCell);
+				Cell randomCell = getRandomCell(currentCell);;
+				while(randomCell.discovered==true)
+					randomCell = getRandomCell(currentCell);
 				deleteAndConnect(currentCell, randomCell);
 				System.out.println("Wall broken between " + currentCell.index + " and " + randomCell.index);
 				System.out.println(currentCell.index); // push

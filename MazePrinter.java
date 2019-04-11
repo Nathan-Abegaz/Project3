@@ -21,23 +21,24 @@ public class MazePrinter {
 		for (int i = 0; i < maze.r - 1; i++) {
 			ret += "-+";
 		}
-		ret += "\n";
+		
 
 		// Inner Lines
 		for (int i = 0; i < maze.r; i++) { // All Rows
+			ret += "\n";
 			ret += "|";
 
-			for (int j = i * maze.r; j < maze.r; j++) { // A Row
+			for (int j = i * maze.r; j < (maze.r * (i+1)); j++) { // A Row
 
 				ret += " ";
 
-				if (maze.cells[j].walls.contains(j + 1))
+				if (maze.cells[j].walls.contains(j + 1) || (j+1)%maze.r==0) 
 					ret += "|";
 				else
 					ret += " ";
 
 			}
-			ret += "|\n";
+			ret += "\n";
 			
 			//Plus row
 			ret += "+";
@@ -52,15 +53,15 @@ public class MazePrinter {
 				ret += "+";
 			}
 			
-			ret += "\n";
+//			ret += "\n";
 			
 		}
 		
 		// Bot Border
 		for (int i = 0; i < maze.r - 1; i++) {
-			ret += "+-";
+			ret += "-+";
 		}
-		ret += "+ +";
+		ret += " +";
 		
 		System.out.println(ret);
 	}

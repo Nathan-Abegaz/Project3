@@ -4,6 +4,7 @@ public class Cell {
 	
 	ArrayList<Integer> walls = new ArrayList();
 	ArrayList<Integer> edges = new ArrayList();
+	public boolean discovered = false;
 	public int index;
 	public int vis;
 	
@@ -47,6 +48,7 @@ public class Cell {
 	{
 		walls.remove(walls.indexOf(newCell.index));
 		edges.add(newCell.index);
+		discovered=true;
 	}
 
 }
