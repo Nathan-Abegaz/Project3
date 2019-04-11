@@ -9,13 +9,13 @@ public class Maze {
 	public Maze(int r)
 	{
 		this.r = r;
+		cells = new Cell[r*r];
 		createGrid();
 		breakWalls();
 	}
 
 	public void createGrid()
 	{
-		Cell[] cells = new Cell[r*r];
 		for(int i = 0; i<cells.length; i++) {
 			Cell newCell = new Cell(i);
 			
@@ -35,13 +35,15 @@ public class Maze {
 		Stack<Cell> cellStack = new Stack<>();
 		int totalCells = cells.length;
 		Cell currentCell =  cells[0];
-		int visitedCells = 0;
+		int visitedCells = 1;
 		while(visitedCells < totalCells)
 		{
 			if(currentCell.checkWalls())
 			{
 				Cell randomCell = getRandomCell(currentCell);
 				deleteAndConnect(currentCell, randomCell);
+				System.out.println("Wall broken between " + currentCell.index + " and " + randomCell.index);
+				System.out.println(currentCell.index); // push
 				cellStack.push(currentCell);
 				currentCell = randomCell;
 				visitedCells++;	
@@ -49,6 +51,7 @@ public class Maze {
 			else
 			{
 				currentCell = cellStack.pop();
+				System.out.println("- " +currentCell.index); //pop
 			}
 		}
 	}
@@ -81,17 +84,17 @@ public class Maze {
 	}
 	
 	private void right(Cell i) {
-		if(((i.index+1)%r)==0)
+		if(((i.index-1)%r)!=0)
 			i.add(i.index+1);
 	}
 	
 	private void top(Cell i) {
-		if(i.index<r)
+		if(i.index>=r)
 			i.add(i.index-r);
 	}
 	
 	private void bottom(Cell i) {
 		if(i.index+r<r*r)
-			i.add(i.index-r);
+			i.add(i.index+r);
 	}
 }

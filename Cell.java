@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Cell {
 	
-	ArrayList<Integer> walls;
-	ArrayList<Integer> edges;
+	ArrayList<Integer> walls = new ArrayList();
+	ArrayList<Integer> edges = new ArrayList();
 	public int index;
 	public int vis;
 	
@@ -17,6 +17,7 @@ public class Cell {
 	public void add(int i)
 	{
 		walls.add(i);
+	//	System.out.println(i+ " added to " + this.index + "'s walls");
 	}
 	
 	
@@ -44,7 +45,7 @@ public class Cell {
 	
 	public void dnc(Cell newCell)
 	{
-		walls.remove(walls.indexOf(newCell));
+		walls.remove(walls.indexOf(newCell.index));
 		edges.add(newCell.index);
 	}
 
