@@ -4,7 +4,7 @@ public class MazePrinter {
 	Maze maze;
 
 	public static void main(String[] args) {
-		Maze maze = new Maze(3);
+		Maze maze = new Maze(10);
 		MazePrinter mp = new MazePrinter(maze);
 		mp.print();
 	}
@@ -42,8 +42,8 @@ public class MazePrinter {
 			
 			//Plus row
 			ret += "+";
-
-			for (int j = i * maze.r; j < maze.r; j++) { // A Row
+			if(i<maze.r-1)
+			for (int j = i * maze.r; j < (maze.r * (i+1)); j++) { // A Row
 
 				if (maze.cells[j].walls.contains(j + maze.r))
 					ret += "-";
