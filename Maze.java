@@ -24,6 +24,7 @@ public class Maze {
 			top(newCell);
 			bottom(newCell);
 			
+			System.out.println(newCell.index + " " + newCell.walls.toString());
 			cells[i] = newCell;
 			
 		}
@@ -38,11 +39,22 @@ public class Maze {
 		int visitedCells = 1;
 		while(visitedCells < totalCells)
 		{
-			if(currentCell.checkWalls())
+			System.out.println("focus: " + currentCell.index);
+			boolean eligible = false;
+			for(int i = 0; i<currentCell.walls.size(); i++) {
+				if(!cells[currentCell.walls.get(i)].discovered)
+					eligible = true;
+			}
+			if(currentCell.checkWalls() && eligible)
 			{
-				Cell randomCell = getRandomCell(currentCell);;
-				while(randomCell.discovered==true)
+				Cell randomCell = getRandomCell(currentCell);
+				System.out.println("Random is : " +randomCell.index);
+				int count = 0;
+				while(randomCell.discovered==true) {
 					randomCell = getRandomCell(currentCell);
+					System.out.println("Random is : " +randomCell.index);
+					count++;
+				}
 				deleteAndConnect(currentCell, randomCell);
 				System.out.println("Wall broken between " + currentCell.index + " and " + randomCell.index);
 				System.out.println(currentCell.index); // push
@@ -86,7 +98,7 @@ public class Maze {
 	}
 	
 	private void right(Cell i) {
-		if(((i.index-1)%r)!=0)
+		if(!((i.index+1)%r==0))
 			i.add(i.index+1);
 	}
 	

@@ -4,7 +4,7 @@ public class MazePrinter {
 	Maze maze;
 
 	public static void main(String[] args) {
-		Maze maze = new Maze(2);
+		Maze maze = new Maze(3);
 		MazePrinter mp = new MazePrinter(maze);
 		mp.print();
 	}
