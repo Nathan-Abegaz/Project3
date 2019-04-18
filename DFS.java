@@ -11,11 +11,14 @@ public class DFS {
 	int distance = 0;
 
 	Stack<Integer> stack;
+	Stack<Integer> answerStack;
 
 	public static void main(String[] args) {
 		Maze maze = new Maze(3);
+		MazePrinter mp = new MazePrinter(maze);
 		DFS dfs = new DFS(maze);
-
+		mp.add(dfs);
+		mp.print();
 		int[] dfsSolved = dfs.solve();
 		for (int j : dfsSolved) {
 			System.out.println(" " + j);
@@ -26,6 +29,7 @@ public class DFS {
 	DFS(Maze maze) {
 		this.maze = maze;
 		this.stack = new Stack<Integer>();
+		this.answerStack = new Stack<Integer>();
 
 	}
 
@@ -38,11 +42,11 @@ public class DFS {
 		// if(maze.cells[i].vis==WHITE)
 		DFS_Visit(maze.cells[0]);
 		// }
-			int[] ret = new int[stack.size()];
-			for (int i = ret.length-1; i >= 0; i--) {
-				ret[i] = stack.pop();
-			}
-			return ret;
+		int[] ret = new int[answerStack.size()];
+		for (int i = ret.length - 1; i >= 0; i--) {
+			ret[i] = answerStack.pop();
+		}
+		return ret;
 	}
 
 	Stack<Integer> DFS_Visit(Cell cell) {
@@ -50,8 +54,7 @@ public class DFS {
 		distance++;
 		if (cell.index == (maze.r * maze.r) - 1) {
 			System.out.println(distance);
-		//WE NEED TO COPY OVER THE SOLUTION	 stack;//SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-			// need to break
+			answerStack = (Stack<Integer>) stack.clone();
 		}
 		cell.vis = GREY;
 		for (int i = 0; i < cell.edges.size(); i++) {

@@ -24,7 +24,7 @@ public class Maze {
 			top(newCell);
 			bottom(newCell);
 			
-			System.out.println(newCell.index + " " + newCell.walls.toString());
+		//	System.out.println(newCell.index + " " + newCell.walls.toString());
 			cells[i] = newCell;
 			
 		}

@@ -2,67 +2,80 @@
 public class MazePrinter {
 
 	Maze maze;
+	String blank;
+	int[] dfsSol;
+	
 
 	public static void main(String[] args) {
 		Maze maze = new Maze(10);
 		MazePrinter mp = new MazePrinter(maze);
 		mp.print();
 	}
+	
+	public void add(DFS dfs) {
+		dfsSol = dfs.solve();
+	}
 
 	MazePrinter(Maze maze) {
 		this.maze = maze;
+		blank();
+		print();
+	}
+	
+	void print() {
+		System.out.println(blank);
 	}
 
-	void print() {
-		String ret = "";
+	void blank() {
+		blank = "";
 
 		// Top Border
-		ret += "+ +";
+		blank += "+ +";
 		for (int i = 0; i < maze.r - 1; i++) {
-			ret += "-+";
+			blank += "-+";
 		}
 		
 
 		// Inner Lines
 		for (int i = 0; i < maze.r; i++) { // All Rows
-			ret += "\n";
-			ret += "|";
+			blank += "\n";
+			blank += "|";
 
 			for (int j = i * maze.r; j < (maze.r * (i+1)); j++) { // A Row
 
-				ret += " ";
+				blank += " ";
 
 				if (maze.cells[j].walls.contains(j + 1) || (j+1)%maze.r==0) 
-					ret += "|";
+					blank += "|";
 				else
-					ret += " ";
+					blank += " ";
 
 			}
-			ret += "\n";
+			blank += "\n";
 			
 			//Plus row
-			ret += "+";
+			blank += "+";
 			if(i<maze.r-1)
 			for (int j = i * maze.r; j < (maze.r * (i+1)); j++) { // A Row
 
 				if (maze.cells[j].walls.contains(j + maze.r))
-					ret += "-";
+					blank += "-";
 				else
-					ret += " ";
+					blank += " ";
 				
-				ret += "+";
+				blank += "+";
 			}
 			
-//			ret += "\n";
+//			blank += "\n";
 			
 		}
 		
 		// Bot Border
 		for (int i = 0; i < maze.r - 1; i++) {
-			ret += "-+";
+			blank += "-+";
 		}
-		ret += " +";
+		blank += " +";
 		
-		System.out.println(ret);
+		System.out.println(blank);
 	}
 }
