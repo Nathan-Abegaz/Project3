@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -21,7 +22,7 @@ public class BFS {
 		this.queue = new LinkedList<Integer>();
 	}
 
-	public void solve() {
+	public int[] solve() {
 	
 		////each v will be v.color=WHITE 
 		for (int i = 0; i < maze.cells.length; i++) {
@@ -62,10 +63,15 @@ public class BFS {
 			answerList.add(u.index);
 			if(u.index == (maze.r * maze.r) - 1)
 			{
-				return;
+				int[] listArray = new int[answerList.size()];
+				for(int i  = 0; i < listArray.length; i ++)
+				{
+					listArray [i] = answerList.get(i);				
+				}
+				return listArray;
 			}
-		
 		}
+		return null;
 	}
 	
 	public static void main(String[] args) {
@@ -73,7 +79,9 @@ public class BFS {
 		MazePrinter mp = new MazePrinter(maze);
 		BFS bfs = new BFS(maze);
 		bfs.solve();
-		System.out.print(bfs.answerList.toString());
+		mp.add(bfs);
+		mp.printBFS();
+		//System.out.print(bfs.answerList.toString());
 
 	}
 
