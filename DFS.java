@@ -14,11 +14,11 @@ public class DFS {
 	Stack<Integer> answerStack;
 
 	public static void main(String[] args) {
-		Maze maze = new Maze(3);
+		Maze maze = new Maze(12);
 		MazePrinter mp = new MazePrinter(maze);
 		DFS dfs = new DFS(maze);
 		mp.add(dfs);
-		mp.print();
+		mp.printDFS();
 		int[] dfsSolved = dfs.solve();
 		for (int j : dfsSolved) {
 			System.out.println(" " + j);
