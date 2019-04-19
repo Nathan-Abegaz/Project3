@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.Vector;
 
 public class DFS {
 
@@ -18,12 +19,7 @@ public class DFS {
 		MazePrinter mp = new MazePrinter(maze);
 		DFS dfs = new DFS(maze);
 		mp.add(dfs);
-		mp.printDFS();
-		int[] dfsSolved = dfs.solve();
-		for (int j : dfsSolved) {
-			System.out.println(" " + j);
-		}
-
+		mp.fullPrint();
 	}
 
 	DFS(Maze maze) {
@@ -53,7 +49,7 @@ public class DFS {
 		stack.push(cell.index);
 		distance++;
 		if (cell.index == (maze.r * maze.r) - 1) {
-			System.out.println(distance);
+			// System.out.println(distance);
 			answerStack = (Stack<Integer>) stack.clone();
 		}
 		cell.vis = GREY;
@@ -67,6 +63,14 @@ public class DFS {
 		stack.pop();
 		return null;
 
+	}
+
+	public int[] solveNum() {
+		int[] ret = new int[answerStack.size()];
+		for (int i = ret.length - 1; i >= 0; i--) {
+			ret[i] = answerStack.pop();
+		}
+		return ret;
 	}
 
 }

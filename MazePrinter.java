@@ -6,22 +6,44 @@ public class MazePrinter {
 	Maze maze;
 	String blank;
 	String dfs;
-	ArrayList<Integer> dfsSol;
-
-	public static void main(String[] args) {
-		Maze maze = new Maze(3);
-		MazePrinter mp = new MazePrinter(maze);
-		mp.printDFS();
+	String dfsNum;
+	String bfs;
+	String bfsNum;
+	
+	void fullPrint() {
+		System.out.println("Graph Size: " + maze.r + '\n' + "MAZE: ");
+		print();
+		/*System.out.println("BFS: ");
+		printBFS();
+		printBFSNum();*/
+		System.out.println("DFS: ");
+		printDFS();
+		printDFSNum();
+		System.out.println("======================\n  Program Completed!\n======================");
 	}
-
+	
+	void print() {
+		System.out.println(blank + '\n');
+	}
+	
 	void printDFS() {
-		System.out.println(dfs);
-		
+		System.out.println(dfs + '\n');
 	}
-
+	
+	public void printDFSNum() {
+		System.out.println(dfsNum + '\n');
+	}
+	
+	public void printBFS() {
+		System.out.println(bfs + '\n');
+	}
+	
+	public void printBFSNum() {
+		System.out.println(bfsNum + '\n');
+	}
 	public void add(DFS dfs) {
 		this.dfs = "";
-		dfsSol = new ArrayList<>();
+		ArrayList<Integer> dfsSol = new ArrayList<>();
 		int[] dfsA = dfs.solve();
 
 		for (int tile : dfsA) {
@@ -29,12 +51,12 @@ public class MazePrinter {
 		}
 		
 		this.dfs = addSol(dfsSol);
-
+		this.dfsNum = addNumSol(dfsSol);
 	}
 	
-/*	public void add(BFS bfs) {
+	public void add(BFS bfs) {
 		this.bfs = "";
-		bfsSol = new ArrayList<>();
+		ArrayList<Integer> bfsSol = new ArrayList<>();
 		int[] bfsA = bfs.solve();
 
 		for (int tile : bfsA) {
@@ -42,10 +64,10 @@ public class MazePrinter {
 		}
 		
 		this.bfs = addSol(bfsSol);
-
-	}*/
+		this.bfsNum = addNumSol(bfsSol);
+	}
 	
-	public String addSol(ArrayList solution) {
+	public String addSol(ArrayList<Integer> solution) {
 
 		String mazeString = blank;
 
@@ -56,11 +78,31 @@ public class MazePrinter {
 
 		for (int i = 0; i < maze.r; i++) {
 			for (int j = 0; j < maze.r; j++) {
-				if (dfsSol.contains(tile)) {
-/*					if(maze.r<4)
-					sb.setCharAt(index, tile);
-					else*/
+				if (solution.contains(tile)) {
 						sb.setCharAt(index, '#');
+				}
+				index+=2;
+				tile++;
+			}
+			index+= (maze.r*2)+4;
+		}
+		
+		return sb.toString();
+	}
+	
+	public String addNumSol(ArrayList<Integer> solution) {
+
+		String mazeString = blank;
+
+		StringBuilder sb = new StringBuilder(mazeString);
+		int index = (maze.r * 2) + 3;
+
+		int tile = 0;
+
+		for (int i = 0; i < maze.r; i++) {
+			for (int j = 0; j < maze.r; j++) {
+				if (solution.contains(tile)) {
+						sb.setCharAt(index, (char) ('0'+solution.indexOf(tile)%10));
 				}
 				index+=2;
 				tile++;
@@ -74,12 +116,6 @@ public class MazePrinter {
 	MazePrinter(Maze maze) {
 		this.maze = maze;
 		blank();
-	}
-
-	
-	
-	void print() {
-		System.out.println(blank);
 	}
 
 	void blank() {

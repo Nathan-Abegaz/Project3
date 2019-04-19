@@ -39,7 +39,7 @@ public class Maze {
 		int visitedCells = 1;
 		while(visitedCells < totalCells)
 		{
-			System.out.println("focus: " + currentCell.index);
+		//	System.out.println("focus: " + currentCell.index);
 			boolean eligible = false;
 			for(int i = 0; i<currentCell.walls.size(); i++) {
 				if(!cells[currentCell.walls.get(i)].discovered)
@@ -48,16 +48,16 @@ public class Maze {
 			if(currentCell.checkWalls() && eligible)
 			{
 				Cell randomCell = getRandomCell(currentCell);
-				System.out.println("Random is : " +randomCell.index);
+			//	System.out.println("Random is : " +randomCell.index);
 				int count = 0;
 				while(randomCell.discovered==true) {
 					randomCell = getRandomCell(currentCell);
-					System.out.println("Random is : " +randomCell.index);
+			//		System.out.println("Random is : " +randomCell.index);
 					count++;
 				}
 				deleteAndConnect(currentCell, randomCell);
-				System.out.println("Wall broken between " + currentCell.index + " and " + randomCell.index);
-				System.out.println(currentCell.index); // push
+			//	System.out.println("Wall broken between " + currentCell.index + " and " + randomCell.index);
+			//	System.out.println(currentCell.index); // push
 				cellStack.push(currentCell);
 				currentCell = randomCell;
 				visitedCells++;	
@@ -65,7 +65,7 @@ public class Maze {
 			else
 			{
 				currentCell = cellStack.pop();
-				System.out.println("- " +currentCell.index); //pop
+			//	System.out.println("- " +currentCell.index); //pop
 			}
 		}
 	}
@@ -78,6 +78,7 @@ public class Maze {
 	public Cell getRandomCell(Cell cell)
 	{
 		Random randomGenerator = new Random();
+	   // randomGenerator.setSeed(1);
 		int index = randomGenerator.nextInt(cell.walls.size());
 		Cell randomCell = cells[cell.walls.get(index)];
 		return randomCell;
