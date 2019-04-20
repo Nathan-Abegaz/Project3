@@ -1,3 +1,5 @@
+package cs146S19.Group.project3;
+
 import java.util.ArrayList;
 
 public class Cell {

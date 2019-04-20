@@ -1,3 +1,4 @@
+package cs146S19.Group.project3;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,9 +14,9 @@ public class MazePrinter {
 	void fullPrint() {
 		System.out.println("Graph Size: " + maze.r + '\n' + "MAZE: ");
 		print();
-		/*System.out.println("BFS: ");
+		System.out.println("BFS: ");
 		printBFS();
-		printBFSNum();*/
+		printBFSNum();
 		System.out.println("DFS: ");
 		printDFS();
 		printDFSNum();

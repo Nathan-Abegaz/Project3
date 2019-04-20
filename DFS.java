@@ -1,3 +1,4 @@
+package cs146S19.Group.project3;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -13,14 +14,6 @@ public class DFS {
 
 	Stack<Integer> stack;
 	Stack<Integer> answerStack;
-
-	public static void main(String[] args) {
-		Maze maze = new Maze(12);
-		MazePrinter mp = new MazePrinter(maze);
-		DFS dfs = new DFS(maze);
-		mp.add(dfs);
-		mp.fullPrint();
-	}
 
 	DFS(Maze maze) {
 		this.maze = maze;

@@ -1,3 +1,4 @@
+package cs146S19.Group.project3;
 import java.util.Random;
 import java.util.Stack;
 
@@ -78,7 +79,7 @@ public class Maze {
 	public Cell getRandomCell(Cell cell)
 	{
 		Random randomGenerator = new Random();
-	   // randomGenerator.setSeed(1);
+	   //randomGenerator.setSeed(1);
 		int index = randomGenerator.nextInt(cell.walls.size());
 		Cell randomCell = cells[cell.walls.get(index)];
 		return randomCell;
