@@ -85,7 +85,7 @@ public class Maze {
 	 * @param cell
 	 */
 	public Cell getRandomCell(Cell cell) {
-		Random randomGenerator = new Random(2);
+		Random randomGenerator = new Random(2); //Currently seed 2
 		// randomGenerator.setSeed(1);
 		int index = randomGenerator.nextInt(cell.walls.size());
 		Cell randomCell = cells[cell.walls.get(index)];

@@ -270,4 +270,21 @@ public class MazePrinter
       }
       blank += " +"; // Finish with the exit
    }
+
+   public String fullReport()
+   {
+      String ret = new String();
+      ret+="Graph Size: " + maze.r + "\n";
+      ret+="MAZE: " + '\n';
+      ret+=blank+ "\n\n";
+      ret+="BFS: " + "\n";
+      ret+=bfs + "\n\n";
+      ret+=bfsNum + "\n\n";
+      ret+="DFS: " + '\n';
+      ret+=dfs + "\n\n";
+      ret+=dfsNum + "\n\n";
+      
+      return ret;
+      
+   }
 }
