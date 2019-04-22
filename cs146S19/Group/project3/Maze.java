@@ -22,7 +22,7 @@ public class Maze {
 	public Maze(int r) {
 		this.r = r;
 		cells = new Cell[r * r];
-	    randomGenerator = new Random(124124); //Currently seed 2
+	    randomGenerator = new Random(124124); //Currently seed 124124
 	      // randomGenerator.setSeed(1);
 		createGrid();
 		breakWalls();

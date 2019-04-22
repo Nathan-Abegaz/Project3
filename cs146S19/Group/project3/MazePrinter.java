@@ -24,58 +24,7 @@ public class MazePrinter
     * fullPrint is the amalgamation of all the sort strings appended by beautiful
     * Strings, spacing, and an embellished tail
     */
-   void fullPrint()
-   {
-      System.out.println("Graph Size: " + maze.r + '\n' + "MAZE: ");
-      print();
-      System.out.println("BFS: ");
-      printBFS();
-      printBFSNum();
-      System.out.println("DFS: ");
-      printDFS();
-      printDFSNum();
-      System.out.println("======================\n  Program Completed!\n======================");
-   }
 
-   /**
-    * prints the string of the unsolved maze
-    */
-   void print()
-   {
-      System.out.println(blank + '\n');
-   }
-
-   /**
-    * prints the string of the DFS # maze
-    */
-   void printDFS()
-   {
-      System.out.println(dfs + '\n');
-   }
-
-   /**
-    * prints the string of the DFS number maze
-    */
-   public void printDFSNum()
-   {
-      System.out.println(dfsNum + '\n');
-   }
-
-   /**
-    * prints the string of the BFS # maze
-    */
-   public void printBFS()
-   {
-      System.out.println(bfs + '\n');
-   }
-
-   /**
-    * prints the string of the BFS number maze
-    */
-   public void printBFSNum()
-   {
-      System.out.println(bfsNum + '\n');
-   }
 
    /**
     * This method pulls in the DFS object and solves the maze, then pulls the two

@@ -39,7 +39,7 @@ public class BFS {
 	 * This method solves the maze by utilizing the BFS algorithm
 	 */
 	public int[] solve() {
-
+	   int[] listArray = null;
 		//// each v will be v.color=WHITE
 		for (int i = 0; i < maze.cells.length; i++) {
 			maze.cells[i].vis = WHITE;
@@ -70,14 +70,14 @@ public class BFS {
 			u.vis = BLACK;
 			answerList.add(u.index);
 			if (u.index == (maze.r * maze.r) - 1) {
-				int[] listArray = new int[answerList.size()];
+				listArray = new int[answerList.size()];
 				for (int i = 0; i < listArray.length; i++) {
 					listArray[i] = answerList.get(i);
 				}
-				return listArray;
+				break;
 			}
 		}
-		return null;
+		return listArray;
 	}
 
 }
