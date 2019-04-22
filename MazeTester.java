@@ -19,7 +19,7 @@ public class MazeTester
    void threeXthreeTest() throws IOException
    {
 
-      Maze maze = new Maze(3);
+      Maze maze = new Maze(100);
       MazePrinter mp = new MazePrinter(maze);
       DFS dfs = new DFS(maze);
       BFS bfs = new BFS(maze);
