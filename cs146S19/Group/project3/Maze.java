@@ -12,6 +12,7 @@ public class Maze {
 
 	Cell[] cells;
 	public int r;
+	Random randomGenerator;
 
 	/*
 	 * Constructor that creates the maze
@@ -21,6 +22,8 @@ public class Maze {
 	public Maze(int r) {
 		this.r = r;
 		cells = new Cell[r * r];
+	    randomGenerator = new Random(124124); //Currently seed 2
+	      // randomGenerator.setSeed(1);
 		createGrid();
 		breakWalls();
 	}
@@ -85,8 +88,6 @@ public class Maze {
 	 * @param cell
 	 */
 	public Cell getRandomCell(Cell cell) {
-		Random randomGenerator = new Random(2);
-		// randomGenerator.setSeed(1);
 		int index = randomGenerator.nextInt(cell.walls.size());
 		Cell randomCell = cells[cell.walls.get(index)];
 		return randomCell;
